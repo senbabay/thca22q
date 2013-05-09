@@ -14,18 +14,18 @@ mutName[,1] = c("Missense_Mutation","Nonsense_Mutation","Splice_Site","Frame_Shi
 mutName[,2] = c(1,2,3,4,4,5,5)
 
 # RAS - Expression and copy number
-ras.exp = read.csv("/Users/senbabay/Documents/shinyApp/data/RSEM_Chr22_RAS.txt",header=T,sep="\t")
-ras.cn = read.csv("/Users/senbabay/Documents/shinyApp/data/CN_GeneBySample_Chr22_RAS.txt",header=T,sep="\t")
-ras.mut = read.csv("/Users/senbabay/Documents/shinyApp/data/Mut_Chr22_RAS.txt",header=T,sep="\t")
+ras.exp = read.csv("~/data/RSEM_Chr22_RAS.txt",header=T,sep="\t")
+ras.cn = read.csv("~/data/CN_GeneBySample_Chr22_RAS.txt",header=T,sep="\t")
+ras.mut = read.csv("~/data/Mut_Chr22_RAS.txt",header=T,sep="\t")
 
 mx = match(substr(colnames(ras.exp),1,12),substr(colnames(ras.cn),1,12))
 ras.cn2 = ras.cn[,mx[!is.na(mx)]]
 ras.exp2 = ras.exp[,which(!is.na(mx))]
 
 # BRAF - Expression and copy number
-braf.exp = read.csv("/Users/senbabay/Documents/shinyApp/data/RSEM_Chr22_BRAF.txt",header=T,sep="\t")
-braf.cn = read.csv("/Users/senbabay/Documents/shinyApp/data/CN_GeneBySample_Chr22_BRAF.txt",header=T,sep="\t")
-braf.mut = read.csv("/Users/senbabay/Documents/shinyApp/data/Mut_Chr22_BRAF.txt",header=T,sep="\t")
+braf.exp = read.csv("~/data/RSEM_Chr22_BRAF.txt",header=T,sep="\t")
+braf.cn = read.csv("~/data/CN_GeneBySample_Chr22_BRAF.txt",header=T,sep="\t")
+braf.mut = read.csv("~/data/Mut_Chr22_BRAF.txt",header=T,sep="\t")
 
 mx = match(substr(colnames(braf.exp),1,12),substr(colnames(braf.cn),1,12))
 braf.cn2 = braf.cn[,mx[!is.na(mx)]]
@@ -34,22 +34,22 @@ rm(braf.cn)
 rm(braf.exp)
 
 # Methylation file - BRAF
-braf.meth = read.csv("/Users/senbabay/Documents/shinyApp/data/chr22_bestcor_probes_sample_data_BRAF.txt",header=T,sep="\t")
+braf.meth = read.csv("~/data/chr22_bestcor_probes_sample_data_BRAF.txt",header=T,sep="\t")
 mxb = match(substr(colnames(braf.exp2),1,12),colnames(braf.meth)[7:ncol(braf.meth)]) +6
 braf.meth2 = braf.meth[,mxb[!is.na(mxb)]]
 rownames(braf.meth2) = braf.meth[,4]
 rm(braf.meth)
 
 # Methylation file - BRAF
-ras.meth = read.csv("/Users/senbabay/Documents/shinyApp/data/chr22_bestcor_probes_sample_data_RAS.txt",header=T,sep="\t")
+ras.meth = read.csv("~/data/chr22_bestcor_probes_sample_data_RAS.txt",header=T,sep="\t")
 mxr = match(substr(colnames(ras.exp2),1,12),colnames(ras.meth)[7:ncol(ras.meth)]) +6
 ras.meth2 = ras.meth[,mxr[!is.na(mxr)]]
 rownames(ras.meth2) = ras.meth[,4]
 rm(ras.meth)
 
 # Master file
-masterB  = read.csv("/Users/senbabay/Documents/shinyApp/data/masterResultsMatrix_BRAF_v2.txt",sep="\t",header=TRUE)
-masterR  = read.csv("/Users/senbabay/Documents/shinyApp/data/masterResultsMatrix_RAS_v2.txt",sep="\t",header=TRUE)
+masterB  = read.csv("~/data/masterResultsMatrix_BRAF_v2.txt",sep="\t",header=TRUE)
+masterR  = read.csv("~/data/masterResultsMatrix_RAS_v2.txt",sep="\t",header=TRUE)
 
 # Constants
 types = c("Homdel","Hetloss","Diploid")
